@@ -22,12 +22,16 @@ df["q67"] = pd.to_numeric(df["q67"], errors="coerce")
 # correlation between question 66 and question 67
 df[["q66", "q67"]].corr()
 
-#countplot made
-sns.countplot(x="q66", hue="q67", data=df)
+#countplot made with bars and customized colors
+sns.countplot(x="q66", 
+              hue="q67", 
+              data=df, 
+              palette=['green', 'skyblue', 'darkblue', 'orange']
+              )
 
 # added a title and axis labels to better clarify it
-plt.title("Relationship Between Weight Perception (Q66) and Weight Goals (Q67)")
-plt.xlabel("Q66: Perception of Weight (1=Very Underweight... 5=Very Overweight)")
+plt.title("Relationship Between (Q66) and Weight Goals (Q67)")
+plt.xlabel("Q66: Perception of Weight (1=Very Underweight to 5=Very Overweight)")
 plt.ylabel("Number of Students")
 # show the graph
 plt.show()
