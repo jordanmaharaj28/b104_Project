@@ -2,51 +2,51 @@
 # Course:     B104
 # Assignment: Final Project Copy
 
-import pandas as pd 
+import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import os
 
-# Load File 
-
+# Load file
 path = r"/Users/lopez/Documents/Github/b104_Project/XXhq.csv"
+df = pd.read_csv(path, skiprows=3, on_bad_lines="skip")
 
-df = pd.read_csv(
-    r"/Users/lopez/Documents/Github/b104_Project/XXhq.csv",
-    on_bad_lines="skip"
-)
-    
+# Clean column names
+df.columns = df.columns.str.strip()
 
-# Columns names 
-df.columns = df.columns.str.strip()    
-
-
-#Check data
-print(df.head())
+# Check columns
 print(df.columns.tolist())
 
-print(df["Q66"].value_counts())
-print(df["Q67"].value_counts())
+# Find columns containing Q66 and Q67
+q66_cols = [col for col in df.columns if "Q66" in col]
+q67_cols = [col for col in df.columns if "Q67" in col]
 
-# Q66 - Find people who said slightly or very overweight (D or E)
-overweight = df[(df["Q66"] == "D") | (df["Q66"] == "E")]
-trying_lose = overweight[overweight["Q67"] == "A"]
+print("Q66 matches:", q66_cols)
+print("Q67 matches:", q67_cols)
 
-print('Overweight people trying to lose weight:', len(trying_lose))
+# Stop if not found
+if not q66_cols or not q67_cols:
+    print("Q66 or Q67 was not found in the columns.")
+else:
+    q66_col = q66_cols[0]
+    q67_col = q67_cols[0]
 
-# Calculate percent 
+    print(df[q66_col].value_counts())
+    print(df[q67_col].value_counts())
 
-percent = (len(trying_lose) / len(overweight)) * 100 
+    overweight = df[(df[q66_col] == "D") | (df[q66_col] == "E")]
+    trying_lose = overweight[overweight[q67_col] == "A"]
 
-# Final answer 
-print("Percent of overweight people trying to lose weight: {:.2f}%".format(percent))
+    print("Overweight people trying to lose weight:", len(trying_lose))
 
-# Graph 
+    percent = (len(trying_lose) / len(overweight)) * 100
+    print(f"Percent of overweight people trying to lose weight: {percent:.2f}%")
 
-sns.countplot(x="Q67", data=overweight)
-plt.title("Are Overweigght people trying to lose Weight?")
-plt.xlabel("Response (A = Yes)")
-plt.ylabel("Count")
-plt.show()
+    sns.countplot(x=q67_col, data=overweight)
+    plt.title("Are overweight people trying to lose weight?")
+    plt.xlabel("Response")
+    plt.ylabel("Count")
+    plt.show()
 
 #------------------------End of Q66 and Q67 Analysis --------------------------
 
