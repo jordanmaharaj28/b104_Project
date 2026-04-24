@@ -10,13 +10,7 @@ import matplotlib.pyplot as plt
 
 # Read the CSV file
 df = pd.read_csv("/Users/lopez/Documents/GitHub/b104_Project/XXhq.csv",
-                 skiprows=12,
-                 on_bad_lines='skip'
-)
-
-# Read the CSV file
-df = pd.read_csv("/Users/lopez/Documents/GitHub/b104_Project/XXhq.csv",
-                 skiprows=12,
+                 skiprows=11,
                  on_bad_lines='skip'
 )
 
@@ -27,14 +21,13 @@ df.columns = df.columns.str.strip()
 print("Available columns:", df.columns.tolist())
 
 # Update these variables with the correct column names
-weight_col = "Q66 - How do you describe your weight?"  
-lose_weight_col = "Q67 - Are you trying to lose weight?" 
+weight_col = "q66 - How do you describe your weight?"  
+lose_weight_col = "q67 - Are you trying to lose weight?" 
 
 # Check if the column names are in the file
 if weight_col not in df.columns or lose_weight_col not in df.columns:
-    print("Column names are incorrect. Please check the following:")
-    print("Expected weight column:", weight_col)
-    print("Expected lose weight column:", lose_weight_col)
+    print("How do you describe your weight.")
+    print("Are you trying to lose weight.")
 else:
     # Show how many people answered each way
     print(df[weight_col].value_counts())
@@ -55,7 +48,16 @@ else:
     # Print final answer
     print("Percent of overweight people trying to lose weight: {:.2f}%".format(percent))
 
+    # Make graph
+    sns.countplot(x=lose_weight_col, data=overweight)
+    plt.title("Are overweight people trying to lose weight?")
+    plt.xlabel("Q67 Response")
+    plt.ylabel("Count")
+    plt.show()
 #------------------------End of Q66 and Q67 Analysis --------------------------
+
+
+
 
 
 
