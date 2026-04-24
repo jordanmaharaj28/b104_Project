@@ -8,54 +8,73 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-# Read the CSV file
-df = pd.read_csv("/Users/lopez/Documents/GitHub/b104_Project/XXhq.csv",
-                 skiprows=11,
-                 on_bad_lines='skip'
+# loads the YRBS data from the text file
+# sep="\t" means the values are separated by tabs
+data = pd.read_csv("XXhq.txt", sep="\t")
+
+# prints the first 5 answers from q67
+# this helps check that the column loaded correctly
+print(data["q67"].head())
+
+# prints the first 5 answers from q76
+# this also helps make sure the data is reading correctly
+print(data["q76"].head())
+
+# prints all of the column names in the dataset
+# this is useful for checking that q67 and q76 are really there
+print(data.columns)
+
+# converts q67 into numbers
+# errors="coerce" changes anything that is not a number into NaN
+data["q67"] = pd.to_numeric(data["q67"], errors="coerce")
+
+# converts q76 into numbers too
+# this makes it easier to graph and compare the answers
+data["q76"] = pd.to_numeric(data["q76"], errors="coerce")
+
+# finds the correlation between q67 and q76
+# correlation shows whether the two questions have a relationship
+print(data[["q67", "q76"]].corr())
+
+# makes a countplot for q67
+# this shows how many people chose each response for q67
+sns.countplot(x="q67", data=data, palette=["green", "skyblue", "orange", "red"])
+
+# title for the graph
+plt.title("Q67 Responses")
+
+# label for the x-axis
+plt.xlabel("Q67: Trying to Lose Weight")
+
+# label for the y-axis
+plt.ylabel("Number of People")
+
+# displays the graph
+plt.show()
+
+# makes a boxplot comparing q67 and q76
+# q67 goes on the x-axis and q76 goes on the y-axis
+# this helps show how physical activity changes based on q67 responses
+sns.boxplot(
+    x="q67",
+    y="q76",
+    data=data,
+    palette=["lightgreen", "skyblue", "pink", "orange"]
 )
 
-# Remove extra spaces from column names
-df.columns = df.columns.str.strip()
+# title for the second graph
+plt.title("Relationship Between Q67 and Q76")
 
-# Check available columns
-print("Available columns:", df.columns.tolist())
+# label for the x-axis
+plt.xlabel("Q67: Trying to Lose Weight")
 
-# Update these variables with the correct column names
-weight_col = "q66 - How do you describe your weight?"  
-lose_weight_col = "q67 - Are you trying to lose weight?" 
+# label for the y-axis
+plt.ylabel("Q76: Days Physically Active")
 
-# Check if the column names are in the file
-if weight_col not in df.columns or lose_weight_col not in df.columns:
-    print("How do you describe your weight.")
-    print("Are you trying to lose weight.")
-else:
-    # Show how many people answered each way
-    print(df[weight_col].value_counts())
-    print(df[lose_weight_col].value_counts())
-
-    # Find people who said they are slightly or very overweight
-    overweight = df[(df[weight_col] == "D") | (df[weight_col] == "E")]
-
-    # From those people, find who said they are trying to lose weight
-    trying_to_lose = overweight[overweight[lose_weight_col] == "A"]
-
-    # Print how many
-    print("Overweight people trying to lose weight:", len(trying_to_lose))
-
-    # Calculate the percent
-    percent = (len(trying_to_lose) / len(overweight)) * 100
-
-    # Print final answer
-    print("Percent of overweight people trying to lose weight: {:.2f}%".format(percent))
-
-    # Make graph
-    sns.countplot(x=lose_weight_col, data=overweight)
-    plt.title("Are overweight people trying to lose weight?")
-    plt.xlabel("Q67 Response")
-    plt.ylabel("Count")
-    plt.show()
+# displays the second graph
+plt.show()
+    
 #------------------------End of Q66 and Q67 Analysis --------------------------
-
 
 
 
