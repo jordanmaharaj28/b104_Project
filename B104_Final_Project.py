@@ -27,23 +27,23 @@ data[["q66", "q67"]].corr()
 
 # --- First Graph Attempt ---
 #countplot made with bars and customized colors
-sns.countplot(x="q66", 
-              hue="q67", 
-              data=data, 
-              palette=['green', 'skyblue', 'darkblue', 'orange']
-              )
-# describes what each color in the small box means
-plt.legend(
-    title='Q67: Weight Goal', 
-    labels=['Lose Weight', 'Gain Weight', 'Stay The Same', 'Do Nothing']
-    )
+# sns.countplot(x="q66", 
+#               hue="q67", 
+#               data=data, 
+#               palette=['green', 'skyblue', 'darkblue', 'orange']
+#               )
+# # describes what each color in the small box means
+# plt.legend(
+#     title='Q67: Weight Goal', 
+#     labels=['Lose Weight', 'Gain Weight', 'Stay The Same', 'Do Nothing']
+#     )
 
-# added a title and labels on the each axis to better clarify it
-plt.title("Relationship Between Weight Perception (Q66) and Weight Goals (Q67)")
-plt.xlabel("Q66: Perception of Weight (1=Very Underweight to 5=Very Overweight)")
-plt.ylabel("Number of Students")
-# show the graph in the plots window
-plt.show()
+# # added a title and labels on the each axis to better clarify it
+# plt.title("Relationship Between Weight Perception (Q66) and Weight Goals (Q67)")
+# plt.xlabel("Q66: Perception of Weight (1=Very Underweight to 5=Very Overweight)")
+# plt.ylabel("Number of Students")
+# # show the graph in the plots window
+# plt.show()
 
 
 
