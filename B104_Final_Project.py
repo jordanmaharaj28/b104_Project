@@ -22,12 +22,11 @@ data["q66"] = pd.to_numeric(data["q66"], errors="coerce")
 #convert q67 into numbers
 data["q67"] = pd.to_numeric(data["q67"], errors="coerce")
 
-# correlation between question 66 and question 67
+# correlation between question 66 and question 67 
 data[["q66", "q67"]].corr()
 
-# --- First Graph Attempt ---
+# --- First Graph Attempt (no gui) ---
 #countplot made with bars and customized colors
-<<<<<<< HEAD
 # sns.countplot(x="q66", 
 #               hue="q67", 
 #               data=data, 
@@ -38,7 +37,6 @@ data[["q66", "q67"]].corr()
 #     title='Q67: Weight Goal', 
 #     labels=['Lose Weight', 'Gain Weight', 'Stay The Same', 'Do Nothing']
 #     )
-=======
 sns.countplot(x="q66", 
               hue="q67", 
               data=data, 
@@ -62,7 +60,6 @@ plt.legend(
     title='Q67: Weight Goal', 
     labels=['Lose Weight', 'Gain Weight', 'Stay The Same', 'Do Nothing']
     )
->>>>>>> f7ef5779bf1b70e2d8a1b8f12afdc4561949e6ab
 
 # # added a title and labels on the each axis to better clarify it
 # plt.title("Relationship Between Weight Perception (Q66) and Weight Goals (Q67)")
@@ -132,8 +129,8 @@ def graph_2():
     # Title and labels explaining what everything on the graph shows
     plt.title('Weight Perception (Q66) and Physical Activity (Q76)')
     plt.xlabel('Q66: Perception of Weight')
-    plt.ylabel('Q76: Days Phyically Active Over The Past 7 Days')
-    # show the graph
+    plt.ylabel('Q76: Days Physically Active Over The Past 7 Days')
+    # shows the graph
     plt.show()
     
     
