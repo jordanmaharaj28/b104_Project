@@ -2,7 +2,7 @@
 # Course:     B104
 # Assignment: Final Project Copy
 
-# Libraries
+# Librariess
 # pandas helps me read the data file and work with it like a table
 import pandas as pd
 # seaborn helps me make the graphs
@@ -190,6 +190,9 @@ def show_q67_q76_graph():
     handles, labels = plt.gca().get_legend_handles_labels()
 
 # this gives better labels for q76
+# I used this so the legend explains what each number of days means
+    new_labels = [
+        "0 days active",
         "1 day active",
         "2 days active",
         "3 days active",
