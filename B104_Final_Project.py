@@ -323,3 +323,9 @@ button2.pack(pady=10)
 window.mainloop()
 
 # ------------------------End of Q66 and Q67 Analysis -------------------------#
+
+
+
+
+
+
