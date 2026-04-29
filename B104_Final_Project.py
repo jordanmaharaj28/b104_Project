@@ -129,7 +129,7 @@ def show_q67_graph():
     # plt.legend() makes the legend box
     # handles gives the color boxes
     # new_labels[:len(handles)] only uses as many labels as I need
-    # len() counts how many items are in something
+    # len() counts how many things are in something
     # len(handles) counts how many legend color boxes there are
     # bbox_to_anchor moves the legend to a different spot
     # 1.05 moves it a little to the right of the graph
@@ -257,6 +257,8 @@ window.geometry("500x250")
 
 # this changes the background color of the whole window
 # bg means background color
+# window.configure() is used to change settings of the GUI window
+# bg="#f2f2f2" sets the window to a very light gray color
 window.configure(bg="#f2f2f2")
 
 # this makes the text at the top of the window
@@ -264,6 +266,7 @@ window.configure(bg="#f2f2f2")
 # text is what the label says
 # font changes the style and size of the text
 # bg changes the label background so it matches the window
+# bg="#f2f2f2" makes the label background match the window background
 label = tk.Label(
     window,
     text="Click a button to display a graph",
@@ -282,7 +285,7 @@ label.pack(pady=20)
 # tk.Button() creates a button
 # text is what the button says
 # command tells the button which function to run when clicked
-# width=25 makes the button wider so the text fits nicely
+# width=25 makes the button wider so the text fits well
 # bg changes the button background color
 button1 = tk.Button(
     window,
@@ -297,6 +300,9 @@ button1 = tk.Button(
 # I picked 10 so there is some space but not too much
 button1.pack(pady=10)
 
+# command tells the button what function to run when I click it
+# width=25 makes the button wider so the text fits nicely
+# 25 is the button width size
 # this makes the second button
 # this one runs the q67 and q76 graph function
 button2 = tk.Button(
@@ -306,7 +312,9 @@ button2 = tk.Button(
     width=25,
     bg="lightblue"
 )
-
+# pady means padding on the y direction, so top and bottom space
+# pady=10 adds 10 pixels of space above and below the button
+# I used 10 so the button has some space but is not too far away
 # this puts the second button on the window
 button2.pack(pady=10)
 
